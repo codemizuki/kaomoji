@@ -1,4 +1,4 @@
-def get_kaomoji(sentiment_or_animal):
+def get_all_kaomojis():
     kaomoji_dict = {
         "happy": "(ﾉ^ヮ^)ﾉ*:・ﾟ✧",
         "sad": "(╥_╥)",
@@ -43,7 +43,6 @@ def get_kaomoji(sentiment_or_animal):
         "sarcastic": "(￢_￢)",
         "lucky": "(ﾉ≧∀≦)ﾉ",
         "intrigued": "(´・_・`)",
-        "hopeless": "(´；д；`)",
         "lonely": "(´；ω；`)",
         "cozy": "(´∩｡• ᵕ •｡∩`)",
         "ashamed": "(/ω＼)",
@@ -59,7 +58,7 @@ def get_kaomoji(sentiment_or_animal):
         "boyfriend": "( • )( • )ԅ(≖‿≖ԅ)",
         "drowning": "‿︵‿︵‿︵‿ヽ(°□° )ノ︵‿︵‿︵‿︵",
         "rain": "｀、ヽ｀ヽ｀、ヽ(ノ＞＜)ノ ｀、ヽ｀☂ヽ｀、ヽ",
-        "pointing": "(　･ω･)☞	".
+        "pointing": "(　･ω･)☞	",
         "nerd": "(⌐■_■)",
         "eating": "(๑ᵔ⤙ᵔ๑)",
         "hungry": "(￣﹃￣)",
@@ -67,7 +66,7 @@ def get_kaomoji(sentiment_or_animal):
         "facepalm": "(－‸ლ)",
         "surrender": "(oT-T)尸",
         "sus": "( ͠° ͟ʖ ͡°)",
-        "x1": "( ノ-_-)ノﾞ_□ VS □_ヾ(^-^ヽ)"
+        "x1": "( ノ-_-)ノﾞ_□ VS □_ヾ(^-^ヽ)",
         "gamers": "(˙ω˙)🎮(˙∀˙)🎮",
         "full": "(っ˘ڡ˘ς)	",
         "barbecue": "( ・・)つ―{}@{}@{}-	",
@@ -140,12 +139,25 @@ def get_kaomoji(sentiment_or_animal):
         "zombies": "乁( x ω x乁)",
         "hare": "／(˃ᆺ˂)＼",
         "kitty": "ฅ(=^･ｪ･^=)ฅ",
-      
     }
+    return kaomoji_dict
 
+def get_kaomoji(sentiment_or_animal):
+    kaomoji_dict = get_all_kaomojis()
     return kaomoji_dict.get(sentiment_or_animal.lower(), "Sorry, I don't have a kaomoji for that sentiment or animal.")
 
 if __name__ == "__main__":
-    user_input = input("Enter a sentiment or an animal name: ")
-    kaomoji = get_kaomoji(user_input)
-    print("Kaomoji for '{}' sentiment or '{}' animal: {}".format(user_input, user_input, kaomoji))
+    while True:
+        user_input = input("Enter a sentiment, an animal name, or 'all' to list everything, or 'exit' to quit: ")
+        if user_input.lower() == 'exit':
+            print("Exiting...")
+            break
+        elif user_input.lower() == 'all':
+            all_kaomojis = get_all_kaomojis()
+            print("Available Kaomojis:")
+            for key, value in all_kaomojis.items():
+                print(f"{key}: {value}")
+        else:
+            kaomoji = get_kaomoji(user_input)
+            print("Kaomoji for '{}' sentiment or '{}' animal: {}".format(user_input, user_input, kaomoji))
+
