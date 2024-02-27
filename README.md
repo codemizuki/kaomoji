@@ -1,7 +1,3 @@
-Sure, here's a documentation for the program:
-
----
-
 ## Kaomoji Generator Documentation
 
 ### Introduction
